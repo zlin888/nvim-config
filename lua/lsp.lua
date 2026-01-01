@@ -98,3 +98,10 @@ require'lspconfig'.rust_analyzer.setup{on_attach=custom_attach, capabilities=cap
 require'coq-lsp'.setup{lsp = {on_attach=custom_attach, capabilities=capabilities} }
 
 require('lean').setup{ mappings = true, lsp = {on_attach=custom_attach, capabilities=capabilities} }
+
+require("flutter-tools").setup {
+  lsp = {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+  }
+}

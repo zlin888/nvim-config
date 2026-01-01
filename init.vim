@@ -86,6 +86,10 @@ Plug 'pechorin/any-jump.vim'
 Plug 'MunifTanjim/nui.nvim'        " it's a dependency
 Plug 'xeluxee/competitest.nvim'
 
+" Flutter
+Plug 'stevearc/dressing.nvim' " optional for vim.ui.select
+Plug 'nvim-flutter/flutter-tools.nvim'
+
 call plug#end()
 
 
@@ -163,3 +167,9 @@ nnoremap <leader>al :AnyJumpLastResults<CR>
 
 " yank current (abs) file path
 nnoremap <leader>cp: let @" = expand("%:p")<CR>
+
+
+" flutter
+nnoremap <leader>fls :FlutterRestart<CR>
+nnoremap <leader>fll :FlutterReload<CR>
+nnoremap <leader>flr :FlutterRun<CR>
