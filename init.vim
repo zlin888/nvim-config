@@ -53,8 +53,6 @@ Plug 'nvim-tree/nvim-web-devicons' " buffer bar: OPTIONAL: for file icons
 Plug 'lewis6991/gitsigns.nvim' " buffer bar: OPTIONAL: for git status
 Plug 'romgrk/barbar.nvim' " buffer bar
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 " AUTO CMP
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
