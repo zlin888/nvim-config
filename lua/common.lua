@@ -1,3 +1,6 @@
+vim.opt.termguicolors = true
+require("bufferline").setup{}
+
 require("buffer_manager").setup({
   select_menu_item_commands = {
     v = {
@@ -24,8 +27,19 @@ local map = vim.keymap.set
 local opts = {noremap = true}
 
 map({ 't', 'n' }, '<leader>bm', bmui.toggle_quick_menu, opts)
-map('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
+map('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', opts)
+map('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', opts)
+map('n', '<leader>1', '<Cmd>BufferLineGoToBuffer 1<CR>', opts)
+map('n', '<leader>2', '<Cmd>BufferLineGoToBuffer 2<CR>', opts)
+map('n', '<leader>3', '<Cmd>BufferLineGoToBuffer 3<CR>', opts)
+map('n', '<leader>4', '<Cmd>BufferLineGoToBuffer 4<CR>', opts)
+map('n', '<leader>5', '<Cmd>BufferLineGoToBuffer 5<CR>', opts)
+map('n', '<leader>6', '<Cmd>BufferLineGoToBuffer 6<CR>', opts)
+map('n', '<leader>7', '<Cmd>BufferLineGoToBuffer 7<CR>', opts)
+map('n', '<leader>8', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
+map('n', '<leader>9', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
+map('n', '<leader>bd', '<Cmd>BufferLinePickClose<CR>', opts)
+map('n', '<leader>bp', '<Cmd>BufferLinePick<CR>', opts)
 
 
 -- codeforce

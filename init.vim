@@ -51,7 +51,7 @@ Plug 'famiu/bufdelete.nvim'
 
 Plug 'nvim-tree/nvim-web-devicons' " buffer bar: OPTIONAL: for file icons
 Plug 'lewis6991/gitsigns.nvim' " buffer bar: OPTIONAL: for git status
-Plug 'romgrk/barbar.nvim' " buffer bar
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' } " buffer bar
 
 " AUTO CMP
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -139,6 +139,8 @@ nmap s <Plug>(easymotion-overwin-f2)
 nnoremap <Leader>ag :<C-u>Ag --ignore tags 
 
 " FLOAT TERM
+let g:floaterm_height = 0.95
+let g:floaterm_width = 0.95
 nnoremap   <silent>   <Leader>ff    :FloatermNew<CR>
 tnoremap   <silent>   <Leader>ff    <C-\><C-n>:FloatermNew<CR>
 nnoremap   <silent>   <Leader>fp    :FloatermPrev<CR>
