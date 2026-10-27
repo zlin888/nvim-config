@@ -92,6 +92,10 @@ Plug 'nvim-flutter/flutter-tools.nvim'
 
 call plug#end()
 
+augroup filetype_cuda
+  autocmd!
+  autocmd BufRead,BufNewFile *.cu,*.cuh set filetype=cpp
+augroup END
 
 lua require("mason").setup()
 lua require("mason-lspconfig").setup { ensure_installed = { "lua_ls", "pyright", "clangd", "rust_analyzer", "coq_lsp" }, automatic_enable = true }
