@@ -89,7 +89,56 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require'lspconfig'.pyright.setup{on_attach=custom_attach, capabilities=capabilities}
+local function python_path_for_root(root_dir)
+  local candidates = {
+    root_dir .. "/.venv/bin/python",
+    root_dir .. "/venv/bin/python",
+    root_dir .. "/env/bin/python",
+  }
+
+  local active_env = vim.env.VIRTUAL_ENV or vim.env.CONDA_PREFIX
+  if active_env and active_env ~= "" then
+    table.insert(candidates, active_env .. "/bin/python")
+  end
+
+  for _, candidate in ipairs(candidates) do
+    if vim.fn.executable(candidate) == 1 then
+      return candidate
+    end
+  end
+
+  local pyenv = vim.fn.exepath("pyenv")
+  if pyenv ~= "" then
+    local result = vim.system({ pyenv, "which", "python" }, {
+      cwd = root_dir,
+      text = true,
+    }):wait()
+    local candidate = vim.trim(result.stdout or "")
+    if result.code == 0 and candidate ~= "" and vim.fn.executable(candidate) == 1 then
+      return candidate
+    end
+  end
+
+  for _, name in ipairs({ "python", "python3" }) do
+    local candidate = vim.fn.exepath(name)
+    if candidate ~= "" then
+      return candidate
+    end
+  end
+end
+
+require("lspconfig").pyright.setup {
+  on_attach = custom_attach,
+  capabilities = capabilities,
+  on_new_config = function(new_config, root_dir)
+    local python_path = python_path_for_root(root_dir)
+    if python_path then
+      new_config.settings = new_config.settings or {}
+      new_config.settings.python = new_config.settings.python or {}
+      new_config.settings.python.pythonPath = python_path
+    end
+  end,
+}
 require'lspconfig'.clangd.setup{on_attach=custom_attach, capabilities=capabilities}
 require'lspconfig'.rust_analyzer.setup{on_attach=custom_attach, capabilities=capabilities}
 
