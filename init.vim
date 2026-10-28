@@ -98,7 +98,7 @@ augroup filetype_cuda
 augroup END
 
 lua require("mason").setup()
-lua require("mason-lspconfig").setup { ensure_installed = { "lua_ls", "pyright", "clangd", "rust_analyzer", "coq_lsp" }, automatic_enable = true }
+lua require("mason-lspconfig").setup { ensure_installed = { "lua_ls", "pyright", "clangd", "rust_analyzer", "coq_lsp" }, automatic_enable = { exclude = { "pyright" } } }
 lua require("toggleterm").setup()
 lua require('telescope').load_extension('fzf')
 lua require('ayu').colorscheme()
